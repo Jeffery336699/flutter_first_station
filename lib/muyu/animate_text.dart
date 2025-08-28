@@ -22,7 +22,7 @@ class _AnimateTextState extends State<AnimateText> with SingleTickerProviderStat
     super.initState();
     controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    opacity = Tween(begin: 1.0, end: 0.0).animate(controller);
+    opacity = Tween(begin: 1.0, end: .0).animate(controller);
     scale = Tween(begin: 1.0, end: 0.9).animate(controller);
     position = Tween<Offset>(
       begin: const Offset(0, 2),
@@ -34,6 +34,7 @@ class _AnimateTextState extends State<AnimateText> with SingleTickerProviderStat
   @override
   void didUpdateWidget(covariant AnimateText oldWidget) {
     super.didUpdateWidget(oldWidget);
+    ///这里很关键，外面的record变化了，才重新播放动画；比如敲了一次，重新构建个新的MeritRecord且id不同
     if (oldWidget.record.id != widget.record.id) {
       controller.forward(from: 0);
     }

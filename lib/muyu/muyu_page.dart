@@ -99,7 +99,9 @@ class _MuyuPageState extends State<MuyuPage>
                   image: activeImage,
                   onTap: _onKnock,
                 ),
-                if (_cruRecord != null) AnimateText(record: _cruRecord!)
+                if (_cruRecord != null) AnimateText(record: _cruRecord!),
+                ///测试原来的样子
+                Text('功德+10', style: TextStyle(color: Colors.green[200]),)
               ],
             ),
           ),
@@ -147,6 +149,7 @@ class _MuyuPageState extends State<MuyuPage>
   void _onKnock() {
     pool?.start();
     setState(() {
+      ///更新id，每次都不一样
       String id = uuid.v4();
       _cruRecord = MeritRecord(
         id,
