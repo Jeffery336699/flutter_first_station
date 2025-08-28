@@ -83,6 +83,7 @@ class ConformDialog extends StatelessWidget {
 
   Widget _buildButtons(BuildContext context) => Row(
         children: [
+          //相当于没有内容的Expand组件
           const Spacer(),
           OutlinedButton(
               onPressed: Navigator.of(context).pop,

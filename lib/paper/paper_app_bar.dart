@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_first_station/ext/ex_widget.dart';
 
 class PaperAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onClear;
@@ -49,20 +50,22 @@ class BackUpButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const BoxConstraints cts = BoxConstraints(minHeight: 32, minWidth: 32);
-    Color backColor = onBack ==null?Colors.grey:Colors.black;
-    Color revocationColor = onRevocation ==null?Colors.grey:Colors.black;
+    Color backColor = onBack == null ? Colors.grey : Colors.black;
+    Color revocationColor = onRevocation == null ? Colors.grey : Colors.black;
     return Center(
       child: Wrap(
         children: [
           Transform.scale(
+            // 当 scaleX 的值为 -1 时，它会将子组件沿其中心点进行水平翻转（或称为镜像）。在这个例子中，IconButton
+            // 里的 Icons.next_plan_outlined 图标（通常指向右边）会被水平翻转，从而看起来像一个指向左边的“后退”或“上一步”图标。
             scaleX: -1,
             child: IconButton(
               splashRadius: 20,
               constraints: cts,
               onPressed: onBack,
-              icon: Icon(Icons.next_plan_outlined,color: backColor),
+              icon: Icon(Icons.next_plan_outlined, color: backColor),
             ),
-          ),
+          ).withBorder(),
           IconButton(
             splashRadius: 20,
             onPressed: onRevocation,
