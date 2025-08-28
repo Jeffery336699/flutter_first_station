@@ -59,13 +59,16 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
     });
   }
 
-  TextEditingController _guessCtrl = TextEditingController();
+  final TextEditingController _guessCtrl = TextEditingController();
 
   void _onCheck() {
     print("=====Check:目标数值:$_value=====${_guessCtrl.text}============");
     int? guessValue = int.tryParse(_guessCtrl.text);
     // 游戏未开始，或者输入非整数，无视
     if (!_guessing || guessValue == null) return;
+    // from 参数用于设置动画开始前的值。在这里controller.forward(from: 0) 的意思是，在播放动画之前，
+    // 先将动画控制器的值重置为 0.0，然后从 0.0 开始向 upperBound (默认为 1.0) 播放。
+    // 这确保了即使用户连续快速地猜测，每次的提示动画（大了或小了）都会从头开始播放，而不是从上一次动画结束或中断的位置开始。
     controller.forward(from: 0);
     //猜对了
     if (guessValue == _value) {
@@ -111,7 +114,7 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
                     '点击生成随机数值',
                   ),
                 Text(
-                  _guessing ? '**' : '$_value',
+                  /*_guessing ? '**' :*/ '$_value',
                   style: const TextStyle(
                       fontSize: 68, fontWeight: FontWeight.bold),
                 ),
@@ -130,7 +133,6 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 
 

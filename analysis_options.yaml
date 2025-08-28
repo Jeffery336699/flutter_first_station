@@ -22,8 +22,18 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+     avoid_print: false  # Uncomment to disable the `avoid_print` rule
+     prefer_single_quotes: false  # 修改为false以允许使用双引号
+     prefer_const_constructors: false
+     prefer_const_declarations: false
+     prefer_const_literals_to_create_immutables: false
+     unnecessary_const: false
+     # 添加以下规则来禁用对空字符串的检查
+     prefer_adjacent_string_concatenation: false
+     unnecessary_string_escapes: false
+     unnecessary_string_interpolations: false
+     avoid_empty_else: false
+     empty_statements: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

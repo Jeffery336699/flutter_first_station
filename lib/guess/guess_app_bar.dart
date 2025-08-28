@@ -14,7 +14,7 @@ class GuessAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Icon(Icons.menu, color: Colors.black),
+      leading: const Icon(Icons.menu, color: Colors.black),
       actions: [
         IconButton(
             splashRadius: 20,
@@ -35,7 +35,7 @@ class GuessAppBar extends StatelessWidget implements PreferredSizeWidget {
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(6)),
             ),
-            hintText: "输入 0~99 数字",
+            hintText: '输入 0~99 数字',
             hintStyle: TextStyle(fontSize: 14)),
       ),
     );
