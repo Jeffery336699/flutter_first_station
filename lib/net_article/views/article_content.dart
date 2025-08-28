@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_first_station/net_article/api/article_api.dart';
+
 import '../model/article.dart';
 import 'article_detail_page.dart';
 
@@ -36,7 +35,7 @@ class _ArticleContentState extends State<ArticleContent> {
 
   @override
   Widget build(BuildContext context) {
-    if(_loading){
+    if (_loading) {
       return Center(
         child: Wrap(
           spacing: 10,
@@ -44,7 +43,10 @@ class _ArticleContentState extends State<ArticleContent> {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: const [
             CupertinoActivityIndicator(),
-            Text("数据加载中，请稍后...",style: TextStyle(color: Colors.grey),)
+            Text(
+              "数据加载中，请稍后...",
+              style: TextStyle(color: Colors.grey),
+            )
           ],
         ),
       );
@@ -57,9 +59,7 @@ class _ArticleContentState extends State<ArticleContent> {
         processingText: "正在加载",
         processedText: "刷新成功",
       ),
-      footer:const ClassicFooter(
-        processingText: "正在加载"
-      ),
+      footer: const ClassicFooter(processingText: "正在加载"),
       onRefresh: _onRefresh,
       onLoad: _onLoad,
       child: ListView.builder(
@@ -70,12 +70,12 @@ class _ArticleContentState extends State<ArticleContent> {
     );
   }
 
-  void _onRefresh() async{
+  void _onRefresh() async {
     _articles = await api.loadArticles(0);
     setState(() {});
   }
 
-  void _onLoad() async{
+  void _onLoad() async {
     int nextPage = _articles.length ~/ 20;
     List<Article> newArticles = await api.loadArticles(nextPage);
     _articles = _articles + newArticles;
@@ -96,10 +96,6 @@ class _ArticleContentState extends State<ArticleContent> {
       ),
     );
   }
-
-
-
-
 }
 
 class ArticleItem extends StatelessWidget {
@@ -116,7 +112,7 @@ class ArticleItem extends StatelessWidget {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-        color: Colors.white,
+        color: Colors.blue[100],
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: Column(

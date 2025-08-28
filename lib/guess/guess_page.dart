@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_first_station/storage/sp_storage.dart';
+
 import 'guess_app_bar.dart';
 import 'result_notice.dart';
 
@@ -13,8 +13,8 @@ class GuessPage extends StatefulWidget {
   State<GuessPage> createState() => _GuessPageState();
 }
 
-class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMixin,AutomaticKeepAliveClientMixin{
-
+class _GuessPageState extends State<GuessPage>
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late AnimationController controller;
 
   @override
@@ -27,13 +27,11 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
     _initConfig();
   }
 
-  void _initConfig() async{
-    Map<String,dynamic> config = await SpStorage.instance.readGuessConfig();
-    _guessing = config['guessing']??false;
-    _value = config['value']??0;
-    setState(() {
-
-    });
+  void _initConfig() async {
+    Map<String, dynamic> config = await SpStorage.instance.readGuessConfig();
+    _guessing = config['guessing'] ?? false;
+    _value = config['value'] ?? 0;
+    setState(() {});
   }
 
   int _value = 0;
@@ -41,7 +39,6 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
   final Random _random = Random();
   bool _guessing = false;
   bool? _isBig;
-
 
   @override
   void dispose() {
@@ -54,7 +51,7 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
     setState(() {
       _guessing = true;
       _value = _random.nextInt(100);
-      SpStorage.instance.saveGuessConfig(guessing: _guessing,value: _value);
+      SpStorage.instance.saveGuessConfig(guessing: _guessing, value: _value);
       print(_value);
     });
   }
@@ -75,7 +72,7 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
       setState(() {
         _isBig = null;
         _guessing = false;
-        SpStorage.instance.saveGuessConfig(guessing: _guessing,value: _value);
+        SpStorage.instance.saveGuessConfig(guessing: _guessing, value: _value);
       });
       return;
     }
@@ -95,16 +92,24 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
       ),
       body: Stack(
         children: [
-          if(_isBig!=null)
-          Column(
-            children: [
-              if(_isBig!)
-              ResultNotice(color:Colors.redAccent,info:'大了',controller: controller,),
-              Spacer(),
-              if(!_isBig!)
-              ResultNotice(color:Colors.blueAccent,info:'小了',controller: controller,),
-            ],
-          ),
+          if (_isBig != null)
+            Column(
+              children: [
+                if (_isBig!)
+                  ResultNotice(
+                    color: Colors.redAccent,
+                    info: '大了',
+                    controller: controller,
+                  ),
+                Spacer(),
+                if (!_isBig!)
+                  ResultNotice(
+                    color: Colors.blueAccent,
+                    info: '小了',
+                    controller: controller,
+                  ),
+              ],
+            ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,6 +139,4 @@ class _GuessPageState extends State<GuessPage> with SingleTickerProviderStateMix
 
   @override
   bool get wantKeepAlive => true;
-
-
 }
