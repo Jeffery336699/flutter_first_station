@@ -57,3 +57,26 @@
 | ![124.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1633c8b3c7c24709af211241159a2876~tplv-k3u1fbpfcp-watermark.image?) | ![123.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f6fbf14080345ab90fef84fb343d579~tplv-k3u1fbpfcp-watermark.image?) |
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92ff32c7b25748e1828c2e7985565582~tplv-k3u1fbpfcp-watermark.image?)
+
+##### 6. 如果项目拉取不下来，检查这两个文件有没，后续给忽略了😂
+
+###### `gradle-wrapper.properties` 参考
+
+```groovy
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+#distributionUrl=file\:///C\:/Users/Jeffery/.gradle/wrapper/dists/gradle-7.5-bin.zip
+distributionUrl=file\:///D\:/AppDate/Android/.gradle/wrapper/dists/gradle-7.5-bin.zip
+```
+
+###### `gradle.properties` 参考
+
+```groovy
+org.gradle.jvmargs=-Xmx1536M
+android.useAndroidX=true
+android.enableJetifier=true
+org.gradle.java.home=C:\\Program Files\\Java\\jdk-17
+```
+
